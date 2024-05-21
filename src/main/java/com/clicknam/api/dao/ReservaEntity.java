@@ -10,24 +10,22 @@ public class ReservaEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(name="dia_semana")
-    private int diaSemana;
     @Column(name="dia")
-    private int dia;
+    private Integer dia;
     @Column(name="mes")
-    private int mes;
+    private Integer mes;
     @Column(name="anio")
-    private int ano;
+    private Integer ano;
     @Column(name="hora_inicio")
     private String horaInicio;
     @Column(name="hora_fin")
     private String horaFin;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="usuario_id")
     private UsuarioEntity usuario;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="mesa_id")
     private MesaEntity mesa;
 }

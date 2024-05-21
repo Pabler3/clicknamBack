@@ -34,4 +34,7 @@ public class MesaEntity implements Serializable{
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "mesa")
     private List<ReservaEntity> reserva;
 
+    @Column(name = "activa")
+    private Boolean activa;
+
 }

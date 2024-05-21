@@ -14,5 +14,7 @@ public class MesaModel implements Serializable {
     private String infoMesa;
     private Integer horaMaxima;
     private RestauranteModel restaurante;
-    private List<ReservaEntity> reserva;
+    private Boolean activa;
+    //private List<ReservaModel> reserva;
+
 }

@@ -16,6 +16,7 @@ public interface UsuarioRepository extends JpaRepository<UsuarioEntity, Long> {
     //comprobar si existe el email
     boolean existsByEmail(String email);
 
+    //verifica si el email es unico excepto el suyo
     @Query("SELECT COUNT(u) = 0 FROM UsuarioEntity u WHERE u.email = :email AND u.id != :userId")
     boolean isEmailUniqueExceptMine(String email, Long userId);
 }

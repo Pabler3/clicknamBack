@@ -32,7 +32,7 @@ public class UsuarioService {
             return false;
         }
     }
-    @Transactional
+    @Transactional //servicio para actualizar un usuario
     public UsuarioModel updateUser(UsuarioModel usuario){
         UsuarioEntity usuarioEntity = UsuarioMapper.INSTANCE.modelToEntity(usuario);
         if(usuarioRepository.isEmailUniqueExceptMine(usuarioEntity.getEmail(),usuarioEntity.getId())){

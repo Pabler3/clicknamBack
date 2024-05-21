@@ -21,7 +21,7 @@ public class UsuarioController {
         }
         return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
-    @PutMapping()
+    @PutMapping() //Endpoint para actualizar un usuario
     public ResponseEntity<UsuarioModel> updateUser(@RequestBody UsuarioModel usuario){
         UsuarioModel usuarioModel = usuarioService.updateUser(usuario);
         if(usuarioModel!=null){

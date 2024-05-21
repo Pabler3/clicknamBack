@@ -8,12 +8,11 @@ import lombok.Data;
 @Data
 public class ReservaModel {
     private Long id;
-    private int diaSemana;
-    private int dia;
-    private int mes;
-    private int ano;
+    private Integer dia;
+    private Integer mes;
+    private Integer ano;
     private String horaInicio;
     private String horaFin;
-    private UsuarioEntity usuarioEntity;
-    private MesaEntity mesaEntity;
+    private UsuarioModel usuario;
+    private MesaModel mesa;
 }
