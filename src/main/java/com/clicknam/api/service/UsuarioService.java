@@ -1,18 +1,13 @@
 package com.clicknam.api.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.clicknam.api.dao.UsuarioEntity;
 import com.clicknam.api.mapper.UsuarioMapper;
-import com.clicknam.api.model.ResponseModel;
 import com.clicknam.api.model.UsuarioModel;
 import com.clicknam.api.repository.UsuarioRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.annotation.Validated;
 
 import java.util.Optional;
 
@@ -21,11 +16,15 @@ import java.util.Optional;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
-    @Transactional
+
+    private  BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
     //servicio para registrar usuario nuevo pero verificando si el email existe en otro usuario
     public boolean registerUser(UsuarioModel usuario){
         UsuarioEntity usuarioEntity = UsuarioMapper.INSTANCE.modelToEntity(usuario);
         if(!usuarioRepository.existsByEmail(usuario.getEmail())){
+            String encodedPassword = passwordEncoder.encode(usuario.getPassword());
+            usuarioEntity.setPassword(encodedPassword);
             usuarioRepository.save(usuarioEntity);
             return true;
         }else{
@@ -52,7 +51,8 @@ public class UsuarioService {
         Optional<UsuarioEntity> usuarioEntityOptional = usuarioRepository.findByEmail(usuario.getEmail());
         UsuarioEntity usuarioEntity = usuarioEntityOptional.orElse(null);
         UsuarioModel usuarioModel = UsuarioMapper.INSTANCE.entityToModel(usuarioEntity);
-        if (usuarioEntity != null && usuarioEntity.getPassword().equals(usuario.getPassword())){
+
+        if (usuarioEntity != null && passwordEncoder.matches(usuario.getPassword(), usuarioEntity.getPassword())){
             return usuarioModel;
         }else {
             return null;

@@ -21,11 +21,11 @@ public class ReservaEntity {
     @Column(name="hora_fin")
     private String horaFin;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name="usuario_id")
     private UsuarioEntity usuario;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
     @JoinColumn(name="mesa_id")
     private MesaEntity mesa;
 }

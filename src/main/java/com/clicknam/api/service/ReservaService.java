@@ -10,6 +10,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,25 +58,36 @@ public class ReservaService {
         String horaFinString = horaFin+":"+hora[1];
         return horaFinString;
     }
-    /*
-        @Transactional // servicio para traer una lista de reservas por id de restaurante
-        public List<ReservaModel> findReservaByIdRestaurante(long id){
-            Optional<List<ReservaEntity>> reservaEntities = reservaRepository.findByRestauranteId(id);
-            if(reservaEntities.isPresent()){
-                List<ReservaEntity> reservaEntityList = reservaEntities.get();
-                List<ReservaModel> reservaModelList = ReservaMapper.INSTANCE.entityListToModelList(reservaEntityList);
-                return reservaModelList;
-            }
-            return new ArrayList<ReservaModel>();
-        }
-    */
-    // servicio para devolver reservas de un restaurante por ID
-    public List<ReservaModel> findReservaByIdRestaurante(Long id) throws newException {
-        Optional<List<ReservaEntity>> reservaEntities = reservaRepository.findByRestauranteId(id);
-        if (reservaEntities.isPresent()) {
+
+    @Transactional // servicio para traer una lista de reservas por id de restaurante
+    public List<ReservaModel> findReservaByIdRestaurante(long id) throws newException {
+        Optional<List<ReservaEntity>> reservaEntities = reservaRepository.findByRestId(id);
+        if(!reservaEntities.isEmpty()){
             return ReservaMapper.INSTANCE.entityListToModelList(reservaEntities.get());
         } else {
             throw new newException("Reservas no encontradas con ID: " + id);
         }
+    }
+
+    @Transactional // servicio para traer una lista de reserva por la id de usuario
+    public List<ReservaModel> findReservaByUserId(long id) throws newException {
+        LocalDate today = LocalDate.now();
+        int anoActual = today.getYear();
+        int mesActual = today.getMonthValue();
+        int diaActual = today.getDayOfMonth();
+        Optional<List<ReservaEntity>> reservaEntities = reservaRepository.findByUserId(id,anoActual,mesActual,diaActual);
+        if(reservaEntities.isPresent()){
+            List<ReservaEntity> reservaEntityList = reservaEntities.get();
+            List<ReservaModel> reservaModelList = ReservaMapper.INSTANCE.entityListToModelList(reservaEntityList);
+            return reservaModelList;
+        }else{
+            throw new newException("Reservas no encontradas con ID: " + id);
+        }
+
+    }
+
+    @Transactional // servicio para borrar una reserva
+    public int deleteReserva(Long id){
+        return reservaRepository.deleteReserva(id);
     }
 }

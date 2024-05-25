@@ -15,5 +15,5 @@ public class UsuarioModel implements Serializable {
     private String apellido;
     private String telefono;
     private String rol;
-    private List<ReservaEntity> reserva;
+    //private List<ReservaEntity> reserva;
 }

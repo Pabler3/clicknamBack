@@ -20,7 +20,7 @@ import java.util.List;
 public class RestauranteController {
 
     private final RestauranteService restauranteService;
-    @GetMapping("/busqueda")
+    @GetMapping("/busqueda") //Endpoint que retorna una lista con los restaurante segun los filtros
     public ResponseEntity<List<RestauranteModel>> findByBusqueda(
             @RequestParam String ciudad,
             @RequestParam Integer capacidad,

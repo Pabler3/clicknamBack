@@ -12,13 +12,15 @@ import java.util.Optional;
 @Repository
 public interface RestauranteRepository extends JpaRepository<RestauranteEntity, Long> {
 
-    //Busca um restaurante por ID de usuario
+    //Busca un restaurante por ID de usuario
     @Query("SELECT r FROM RestauranteEntity r WHERE r.administrador.id = :id")
     Optional<List<RestauranteEntity>> findByUserId(long id);
 
     // Método para comprobar no existe el email en la base de datos, excluyendo el mio
     @Query("SELECT COUNT(u) = 0 FROM UsuarioEntity u WHERE u.email = :email AND u.id != :userId")
     boolean isEmailUniqueExceptMine(String email, Long userId);
+
+    // Busca restaurante segun los filtros introducidos por el usuario
     @Query("SELECT r FROM RestauranteEntity r " +
             "INNER JOIN r.mesas m " +
             "LEFT JOIN ReservaEntity res ON res.mesa = m " +

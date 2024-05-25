@@ -62,7 +62,7 @@ public class RestauranteService {
             return null;
         }
     }
-    @Transactional // servicio para crear un restaurante
+    @Transactional // servicio para actualizar un restaurante
     public RestauranteModel updateRestaurante(RestauranteModel restauranteModel) {
         RestauranteEntity restauranteEntity = RestauranteMapper.INSTANCE.modelToEntity(restauranteModel);
         RestauranteEntity savedRestauranteEntity = restauranteRepository.save(restauranteEntity);

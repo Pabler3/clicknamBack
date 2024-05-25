@@ -54,7 +54,7 @@ public class MesaController {
         }
         return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
     }
-    @PutMapping("/mesa")
+    @PutMapping("/mesa") // Endpoint para borrar una mesa
     public ResponseEntity<MesaModel> deleteMesa(@RequestBody MesaModel mesaModel){
         int resultado = mesaService.deleteMese(mesaModel.getId());
         if(resultado > 0){

@@ -33,7 +33,7 @@ public interface MesaRepository extends JpaRepository<MesaEntity, Long> {
             "ORDER BY m.capacidad ASC")
     Optional<List<MesaEntity>> findByBusqueda(String ciudad,Integer capacidad, Integer dia, Integer mes, Integer ano, String hora, Long id);
 
-    @Modifying
+    @Modifying // modifica el estado de la mesa
     @Query("UPDATE MesaEntity m SET m.activa = false WHERE m.id = :id")
     int borrarMesa(Long id);
 }

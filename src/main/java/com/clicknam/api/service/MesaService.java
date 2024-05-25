@@ -37,10 +37,12 @@ public class MesaService {
         return mesa;
     }
     @Modifying
-    @Transactional
+    @Transactional // servicio borrar mesa
     public int deleteMese(Long id){
         return mesaRepository.borrarMesa(id);
     }
+
+
     @Transactional // servicio para traer una lista de mesas por la id de restaurante
     public List<MesaModel> findMesaByRestauranteId(long id){
         Optional<List<MesaEntity>> mesaEntities = mesaRepository.findByRestauranteId(id);
