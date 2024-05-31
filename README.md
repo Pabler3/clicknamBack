@@ -1,3 +1,5 @@
+El proyecto
+
 "Click-Ñam" es una aplicación web diseñada para mejorar la experiencia de reservar mesas en restaurantes. Permite a los usuarios buscar y reservar mesas en diversos restaurantes con facilidad, mostrando disponibilidad en tiempo real y proporcionando una interfaz intuitiva para ello. Los restaurantes pueden registrarse en la plataforma para gestionar sus mesas, reservas y visualizar estadísticas de uso. La aplicación busca simplificar el proceso de reserva, haciendo que sea más accesible y eficiente tanto para clientes como para los propietarios de restaurantes.
 
 En la aplicación hay dos roles diferenciados, usuario cliente y usuario restaurante. 
