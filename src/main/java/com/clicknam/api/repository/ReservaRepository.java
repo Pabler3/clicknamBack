@@ -13,8 +13,9 @@ import java.util.Optional;
 public interface ReservaRepository extends JpaRepository<ReservaEntity, Long> {
 
     //Buscar reserva que tiene un restaurante
-    @Query("SELECT r FROM ReservaEntity r WHERE r.mesa.restaurante.id = :id")
+    @Query("SELECT r FROM ReservaEntity r WHERE r.mesa.restaurante.id = :id ORDER BY r.ano DESC, r.mes DESC, r.dia DESC, r.horaInicio DESC")
     Optional<List<ReservaEntity>> findByRestId(Long id);
+
 
     //Busca reservas  por ID de usuario
     @Query("SELECT r FROM ReservaEntity r WHERE r.usuario.id = :id AND " +
