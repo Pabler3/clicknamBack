@@ -13,6 +13,11 @@ Funciones principales
 •	Gestión de reservas de usuario.
 •	Actualizaciones de perfiles de usuario y de restaurantes.
 
+Interfaces de la aplicación
+
+![image](https://github.com/Pabler3/clicknamBack/assets/164863153/f52ee2d9-1bf6-4b2d-a2b9-c5e2be9b4f1f)
+
+
 Requisitos para la ejecución 
 Instalación de software:
 
